@@ -61,8 +61,12 @@ app.post('/api/formats', async (req, res) => {
         console.log('Available qualities:', qualities)
         res.json({ qualities });
     } catch (err) {
-        console.log('Failed Catches')
-        res.status(500).json({ error: 'Failed to fetch formats' });
+        console.error('Failed to fetch formats:', err);
+        if (err.message && err.message.includes('Video unavailable')) {
+            res.status(404).json({ error: 'This video is unavailable or restricted.' });
+        } else {
+            res.status(500).json({ error: 'Failed to fetch formats' });
+        }
     }
 })
 

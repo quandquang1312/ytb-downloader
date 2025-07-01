@@ -9,7 +9,7 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:5000/api/formats', {
+        const response = await fetch('https://ytb-downloader-nboc.onrender.com/api/formats', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ link }),
@@ -21,7 +21,7 @@ function App() {
     
     const handleDownload = () => {
         if (!selectedFormat) return
-        window.location.href = `http://localhost:5000/api/download?url=${encodeURIComponent(link)}&quality=${selectedFormat}`
+        window.location.href = `https://ytb-downloader-nboc.onrender.com/api/download?url=${encodeURIComponent(link)}&quality=${selectedFormat}`
     }
 
     return (
